@@ -104,8 +104,12 @@ export const AsyncTransitionRoute = TransitionRouteFactory(AsyncRoute);
 export default ({ async, transition, ...rest }) =>
   async
     ? transition
-        ? <AsyncTransitionRoute {...rest} transition={transition} />
-        : <AsyncRoute {...rest} />
+        ? <AsyncTransitionRoute
+            {...rest.match}
+            {...rest}
+            transition={transition}
+          />
+        : <AsyncRoute {...rest.match} {...rest} />
     : transition
-        ? <TransitionRoute {...rest} transition={transition} />
-        : <Route {...rest} />;
+        ? <TransitionRoute {...rest.match} {...rest} transition={transition} />
+        : <Route {...rest.match} {...rest} />;
