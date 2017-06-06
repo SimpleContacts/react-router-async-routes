@@ -3,7 +3,9 @@
   "version": "0.0.1",
   "description": "",
   "main": "dist/index.js",
-  "dependencies": {},
+  "dependencies": {
+    "react-traverse": "github:SimpleContacts/react-traverse"
+  },
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-jest": "^20.0.3",
@@ -29,7 +31,8 @@
     "build": "babel src -d dist --ignore '**/*.test.js'",
     "start": "pm2 start ecosystem.config.js && echo '\n\nYou can view the example by visiting http://localhost:8080. Run \"yarn run stop\" to stop the example. \nUse pm2 to manage and see status of running node services (\"pm2 --help\")\n\n'",
     "stop": "pm2 stop ecosystem.config.js",
-    "build-example": "webpack"
+    "build-example": "webpack",
+    "postinstall": "cd ./node_modules/react-traverse; yarn install; yarn run build;"
   },
   "author": "Steve Farthing",
   "peerDependencies": {

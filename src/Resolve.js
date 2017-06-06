@@ -5,7 +5,7 @@ import { createMemoryHistory } from 'history';
 // Ideally this would be on our private npm registry. It would be transpiled.
 // it would look like this:
 // import traverse from 'react-traverse';
-import traverse from '../../react-traverse/dist/index';
+import traverse from '../node_modules/react-traverse/dist/traverse';
 
 import { AsyncHandler } from './Route';
 import Route, { resolveProps } from './Route';
