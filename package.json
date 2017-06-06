@@ -1,0 +1,40 @@
+{
+  "name": "react-router-async-routes",
+  "version": "0.0.1",
+  "description": "",
+  "main": "dist/index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-jest": "^20.0.3",
+    "babel-loader": "^7.0.0",
+    "babel-plugin-system-import-transformer": "^3.1.0",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-env": "^1.5.1",
+    "babel-preset-react": "^6.24.1",
+    "express": "^4.15.3",
+    "isomorphic-fetch": "^2.2.1",
+    "jest": "^20.0.4",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "react-router": "^4.1.1",
+    "react-router-dom": "^4.1.1",
+    "react-transition-group": "^1.1.3",
+    "webpack": "^2.6.1",
+    "webpack-dev-server": "^2.4.5"
+  },
+  "scripts": {
+    "test": "jest",
+    "build": "babel src -d dist --ignore '**/*.test.js'",
+    "start": "pm2 start ecosystem.config.js && echo '\n\nYou can view the example by visiting http://localhost:8080. Run \"yarn run stop\" to stop the example. \nUse pm2 to manage and see status of running node services (\"pm2 --help\")\n\n'",
+    "stop": "pm2 stop ecosystem.config.js",
+    "build-example": "webpack"
+  },
+  "author": "Steve Farthing",
+  "peerDependencies": {
+    "react": "^15",
+    "react-router": "^4",
+    "react-transition-group": "^1"
+  }
+}
