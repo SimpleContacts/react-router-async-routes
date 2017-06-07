@@ -1,6 +1,6 @@
 {
   "name": "@simple-contacts/react-router-async-routes",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Async Routes and transitions for React Router v4",
   "main": "dist/index.js",
   "dependencies": {
