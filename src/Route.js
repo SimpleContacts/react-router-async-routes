@@ -75,9 +75,7 @@ export const AsyncRoute = props => (
   <Route
     {...props}
     render={moreProps => {
-      return (
-        <AsyncHandler {...props} {...moreProps.match} match={moreProps.match} />
-      );
+      return <AsyncHandler {...props} {...moreProps} {...moreProps.match} />;
     }}
     component={undefined}
   />

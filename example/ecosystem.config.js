@@ -9,6 +9,7 @@ module.exports = {
       name: 'Webpack Development Server',
       exec_interpreter: 'babel-node',
       script: 'webpack-dev-server',
+      args: ['--config=./example/webpack.config.babel.js'],
       watch: ['./webpack.config.babel.js'],
     },
 

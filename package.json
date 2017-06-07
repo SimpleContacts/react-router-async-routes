@@ -1,10 +1,10 @@
 {
-  "name": "react-router-async-routes",
+  "name": "@simple-contacts/react-router-async-routes",
   "version": "0.0.1",
-  "description": "",
+  "description": "Async Routes and transitions for React Router v4",
   "main": "dist/index.js",
   "dependencies": {
-    "react-traverse": "github:SimpleContacts/react-traverse"
+    "@simple-contacts/react-traverse": "^1.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
@@ -28,11 +28,10 @@
   },
   "scripts": {
     "test": "jest",
-    "build": "babel src -d dist --ignore '**/*.test.js'",
-    "start": "pm2 start ecosystem.config.js && echo '\n\nYou can view the example by visiting http://localhost:8080. Run \"yarn run stop\" to stop the example. \nUse pm2 to manage and see status of running node services (\"pm2 --help\")\n\n'",
-    "stop": "pm2 stop ecosystem.config.js",
-    "build-example": "webpack",
-    "postinstall": "cd ./node_modules/react-traverse; yarn install; yarn run build;"
+    "start": "pm2 start ./example/ecosystem.config.js && echo '\n\nYou can view the example by visiting http://localhost:8080. Run \"yarn run stop\" to stop the example. \nUse pm2 to manage and see status of running node services (\"pm2 --help\")\n\n'",
+    "stop": "pm2 stop ./example/ecosystem.config.js",
+    "build-example": "webpack --config ./example/webpack.config.babel.js",
+    "prepublish": "babel src -d dist --ignore '**/*.test.js'"
   },
   "author": "Steve Farthing",
   "peerDependencies": {
