@@ -13,6 +13,7 @@
       {
         "useBuiltIns": true
       }
-    ]
+    ],
+    "transform-es2015-modules-umd"
   ]
 }

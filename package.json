@@ -1,6 +1,6 @@
 {
   "name": "@simple-contacts/react-router-async-routes",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Async Routes and transitions for React Router v4",
   "main": "dist/index.js",
   "dependencies": {
@@ -11,6 +11,7 @@
     "babel-jest": "^20.0.3",
     "babel-loader": "^7.0.0",
     "babel-plugin-system-import-transformer": "^3.1.0",
+    "babel-plugin-transform-es2015-modules-umd": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-polyfill": "^6.23.0",
     "babel-preset-env": "^1.5.1",
