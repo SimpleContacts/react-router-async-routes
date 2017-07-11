@@ -35,15 +35,17 @@ export class AsyncHandler extends Component {
   }
 
   // Lets start our promises right away.
-  async runAsync() {
+  runAsync() {
     // We are flexible to handle a promise in component or render.
-    const [component, render] = await resolveProps(this.props);
-    this.setState({
-      // Lets not fall into es-modules commonjs hell.
-      component,
-      render: render ? () => render : null,
-      isFinished: true,
-    });
+    return resolveProps(this.props)
+      .then(([component, render]) => {
+        this.setState({
+          // Lets not fall into es-modules commonjs hell.
+          component,
+          render: render ? () => render : null,
+          isFinished: true,
+        });
+      });
   }
 
   render() {
