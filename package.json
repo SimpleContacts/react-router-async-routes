@@ -37,7 +37,7 @@
   },
   "author": "Steve Farthing",
   "peerDependencies": {
-    "react": "^15",
+    "react": "^16",
     "react-router": "^4",
     "react-transition-group": "^1"
   }
