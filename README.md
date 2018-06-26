@@ -79,7 +79,7 @@ The async routes can be preprocessed and resolved using *resolveRoutes*. Once re
 
 ```js
 import express from 'express';
-import { resolvedRoutes } from 'react-router-async-routes'
+import { resolveRoutes } from 'react-router-async-routes'
 import { renderToString } from 'react-dom/server';
 import App, { routes } from './App';
 
@@ -89,7 +89,7 @@ app.use(async function(req, res) {
 
   const html = renderToString(
     <StaticRouter location={req.url} context={{}}>
-      {resolvedRoutes}
+      {resolveRoutes}
     </StaticRouter>,
   );
 
