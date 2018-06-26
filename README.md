@@ -89,7 +89,7 @@ app.use(async function(req, res) {
 
   const html = renderToString(
     <StaticRouter location={req.url} context={{}}>
-      {resolveRoutes}
+      {resolvedRoutes}
     </StaticRouter>,
   );
 
