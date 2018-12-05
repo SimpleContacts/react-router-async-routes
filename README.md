@@ -12,23 +12,27 @@ or
 
 ## Usage
 
-To make a asynchronous route, use the `async` prop. When using the async prop, the *component* prop becomes a function that evaluates to a promise of the component. The *render* prop becomes a promise of the render method. The transition *prop* can include options for 'react-transition-group'.
-```js
+To make a asynchronous route, use the `async` prop. When using the async prop, the _component_ prop becomes a function that evaluates to a promise of the component. The _render_ prop becomes a promise of the render method. The transition _prop_ can include options for 'react-transition-group'.
 
-import('isomorphic-fetch');
-import { render } from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
-import Home from './home';
-import Page1 from './page1';
-import Page3 from './page3';
-import Route from 'react-router-async-routes';
+```js
+import("isomorphic-fetch");
+import { render } from "react-dom";
+import { BrowserRouter } from "react-router-dom";
+import Home from "./home";
+import Page1 from "./page1";
+import Page3 from "./page3";
+import Route from "react-router-async-routes";
 
 const FadeInTransition = {
-  transitionName: 'example',
+  transitionName: "example",
   transitionAppear: false,
   transitionEnterTimeout: 500,
   transitionEnter: true,
-  transitionLeave: false,
+  transitionLeave: false
+};
+
+const myErrorHandler = () => {
+  console.error("Error loading page...");
 };
 
 const routes = (
@@ -40,13 +44,18 @@ const routes = (
     <Route transition={FadeInTransition} path="/page1" component={Page1} />
 
     {/* Code Split */}
-    <Route async path="/page2" component={() => import('./page2')} />
+    <Route
+      async
+      path="/page2"
+      component={() => import("./page2")}
+      onError={myErrorHandler}
+    />
 
     {/* Fetch data before render */}
     <Route
       async
       path="/page3"
-      render={() => fetch('/api/endpoint1').then(data => <Page3 data={data} />)}
+      render={() => fetch("/api/endpoint1").then(data => <Page3 data={data} />)}
     />
 
     {/* Code split, data fetch and transition */}
@@ -56,8 +65,8 @@ const routes = (
       path="/page4"
       render={async () => {
         const [Page5, data] = await Promise.all([
-          import('./page3'),
-          fetch('/api/endpoint2'),
+          import("./page3"),
+          fetch("/api/endpoint2")
         ]);
         return <Page3 data={data} />;
       }}
@@ -65,24 +74,18 @@ const routes = (
   </div>
 );
 
-render(
-  <BrowserRouter>
-    {routes}
-  </BrowserRouter>,
-);
-
+render(<BrowserRouter>{routes}</BrowserRouter>);
 ```
 
 ## Static Rendering
 
-The async routes can be preprocessed and resolved using *resolveRoutes*. Once resolved, React.renderToString can be used.
+The async routes can be preprocessed and resolved using _resolveRoutes_. Once resolved, React.renderToString can be used.
 
 ```js
-import express from 'express';
-import { resolveRoutes } from 'react-router-async-routes'
-import { renderToString } from 'react-dom/server';
-import App, { routes } from './App';
-
+import express from "express";
+import { resolveRoutes } from "react-router-async-routes";
+import { renderToString } from "react-dom/server";
+import App, { routes } from "./App";
 
 app.use(async function(req, res) {
   const resolvedRoutes = await ResolveRoutes(routes, req.url);
@@ -90,7 +93,7 @@ app.use(async function(req, res) {
   const html = renderToString(
     <StaticRouter location={req.url} context={{}}>
       {resolvedRoutes}
-    </StaticRouter>,
+    </StaticRouter>
   );
 
   res.send(`<body><div id='app'>${html}</div></body>`);
