@@ -4,11 +4,11 @@ Extend \<Route> API to include async rendering and transitions. This is useful t
 
 ## Install
 
-`npm install react-router-async-routes --save`
+`npm install @simple-contacts/react-router-async-routes --save`
 
 or
 
-`yarn add react-router-async-routes`
+`yarn add @simple-contacts/react-router-async-routes`
 
 ## Usage
 
