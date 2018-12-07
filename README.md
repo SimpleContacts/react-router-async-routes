@@ -21,7 +21,7 @@ import { BrowserRouter } from "react-router-dom";
 import Home from "./home";
 import Page1 from "./page1";
 import Page3 from "./page3";
-import Route from "react-router-async-routes";
+import { Route } from "react-router-async-routes";
 
 const FadeInTransition = {
   transitionName: "example",
