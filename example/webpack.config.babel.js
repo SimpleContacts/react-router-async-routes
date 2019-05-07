@@ -1,10 +1,10 @@
-import webpack from "webpack";
-import path from "path";
-import HtmlWebpackPlugin from "html-webpack-plugin";
+const webpack = require("webpack");
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   entry: {
-    bootstrap: ["babel-polyfill", "./example/bootstrap.js"]
+    bootstrap: ["@babel/polyfill", "./example/bootstrap.js"]
   },
   devtool: "source-map",
   devServer: {
@@ -25,22 +25,22 @@ module.exports = {
       templateContent: `
     <head>
       <style>
-        .fade-enter {
-          opacity: 0.01;
+        .alert-enter {
+          opacity: 0;
+          transform: scale(0.9);
         }
-
-        .fade-enter.fade-enter-active {
+        .alert-enter-active {
           opacity: 1;
-          transition: opacity .5s ease-in;
+          transform: translateX(0);
+          transition: opacity 300ms, transform 300ms;
         }
-
-        .fade-appear {
-          opacity: 0.01;
-        }
-
-        .fade-appear.fade-enter-active {
+        .alert-exit {
           opacity: 1;
-          transition: opacity .5s ease-in;
+        }
+        .alert-exit-active {
+          opacity: 0;
+          transform: scale(0.9);
+          transition: opacity 300ms, transform 300ms;
         }
       </style>
     </head>
@@ -60,7 +60,7 @@ module.exports = {
           babelrc: false,
           presets: [
             [
-              "env",
+              "@babel/env",
               {
                 targets: {
                   browsers: ["last 2 versions", "safari >= 7"]
@@ -70,9 +70,10 @@ module.exports = {
             "react"
           ],
           plugins: [
-            "babel-plugin-syntax-dynamic-import",
+            "@babel/plugin-transform-runtime",
+            "@babel/plugin-syntax-dynamic-import",
             [
-              "transform-object-rest-spread",
+              "@babel/plugin-proposal-object-rest-spread",
               {
                 useBuiltIns: true
               }

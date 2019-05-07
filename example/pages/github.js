@@ -2,7 +2,7 @@ import React from 'react';
 
 export default ({ name, location, avatar_url }) => {
   return (
-    <div>
+    <div style={{backgroundColor: '#090'}}>
       <h2>Page 2</h2>
       <p>{name}</p>
       <p>{location}</p>

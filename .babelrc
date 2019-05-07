@@ -1,6 +1,6 @@
 {
   "presets": [
-    ["env", {
+    ["@babel/preset-env", {
       "targets": {
         "browsers": ["last 2 versions", "safari >= 7"]
       }
@@ -8,8 +8,9 @@
     "react"
   ],
   "plugins": [
-    ["system-import-transformer", { "loose": true }],
-    ["transform-object-rest-spread",
+    "@babel/plugin-transform-runtime",
+    "@babel/plugin-syntax-dynamic-import",
+    ["@babel/plugin-proposal-object-rest-spread",
       {
         "useBuiltIns": true
       }

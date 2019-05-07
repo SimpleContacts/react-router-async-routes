@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { CSSTransitionGroup } from "react-transition-group";
-import { Route } from "react-router";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { Route } from "react-router-dom";
 import { findDOMNode } from "react-dom";
 
 // This is used on server and client.
@@ -97,11 +97,15 @@ export const TransitionRouteFactory = AbstractRoute => ({
   ...rest
 }) => (
   <Route
-    render={({ location }) => (
-      <CSSTransitionGroup {...transition}>
-        <AbstractRoute location={location} key={location.key} {...rest} />
-      </CSSTransitionGroup>
-    )}
+    render={({ location }) => {
+      return (
+        <TransitionGroup>
+          <CSSTransition {...transition} key={location.key}>
+            <AbstractRoute location={location} key={location.key} {...rest} />
+          </CSSTransition>
+        </TransitionGroup>
+      );
+    }}
   />
 );
 

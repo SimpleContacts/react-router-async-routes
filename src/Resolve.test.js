@@ -1,7 +1,7 @@
 import React from 'react';
 import Resolve from './Resolve';
 import Route from './Route';
-import { StaticRouter } from 'react-router';
+import { StaticRouter } from 'react-router-dom';
 import { renderToString } from 'react-dom/server';
 import ExampleApp, { routes as exampleRoutes } from '../example/App';
 
@@ -79,7 +79,7 @@ test('ResolveRoutes can resolve the example app', async () => {
     !!renderToString(
       <StaticRouter location={'/'} context={{}}>
         <ExampleApp routes={resolvedRoutes} />
-      </StaticRouter>,
+      </StaticRouter>
     ).match(/Home/),
   ).toBe(true);
 });
