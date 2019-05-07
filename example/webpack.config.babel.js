@@ -1,24 +1,24 @@
-const webpack = require("webpack");
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const webpack = require('webpack');
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: {
-    bootstrap: ["@babel/polyfill", "./example/bootstrap.js"]
+    bootstrap: ['@babel/polyfill', './example/bootstrap.js'],
   },
-  devtool: "source-map",
+  devtool: 'source-map',
   devServer: {
-    publicPath: "/",
-    contentBase: "./example",
+    publicPath: '/',
+    contentBase: './example',
     proxy: {
-      "**": "http://localhost:8081"
-    }
+      '**': 'http://localhost:8081',
+    },
   },
   output: {
-    publicPath: "/",
-    filename: "[name].js",
-    chunkFilename: "[name].chunk.js",
-    path: __dirname + "/public"
+    publicPath: '/',
+    filename: '[name].js',
+    chunkFilename: '[name].chunk.js',
+    path: __dirname + '/public',
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -47,41 +47,41 @@ module.exports = {
     <body>
       <div id="app"></div>
     </body>
-    `
-    })
+    `,
+    }),
   ],
   module: {
     loaders: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: "babel-loader",
+        loader: 'babel-loader',
         options: {
           babelrc: false,
           presets: [
             [
-              "@babel/env",
+              '@babel/env',
               {
                 targets: {
-                  browsers: ["last 2 versions", "safari >= 7"]
-                }
-              }
+                  browsers: ['last 2 versions', 'safari >= 7'],
+                },
+              },
             ],
-            "react"
+            'react',
           ],
           plugins: [
-            "@babel/plugin-transform-runtime",
-            "@babel/plugin-syntax-dynamic-import",
+            '@babel/plugin-transform-runtime',
+            '@babel/plugin-syntax-dynamic-import',
             [
-              "@babel/plugin-proposal-object-rest-spread",
+              '@babel/plugin-proposal-object-rest-spread',
               {
-                useBuiltIns: true
-              }
+                useBuiltIns: true,
+              },
             ],
-            "transform-es2015-modules-umd"
-          ]
-        }
-      }
-    ]
-  }
+            'transform-es2015-modules-umd',
+          ],
+        },
+      },
+    ],
+  },
 };

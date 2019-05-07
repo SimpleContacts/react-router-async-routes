@@ -1,20 +1,20 @@
-import "isomorphic-fetch";
-import React from "react";
-import Route from "../src/Route";
-import { Link, Switch, StaticRouter } from "react-router-dom";
-import Home from "./pages/home";
-import About from "./pages/about";
+import 'isomorphic-fetch';
+import React from 'react';
+import Route from '../src/Route';
+import { Link, Switch, StaticRouter } from 'react-router-dom';
+import Home from './pages/home';
+import About from './pages/about';
 
 const Loading = () => <div>Loading...</div>;
 
 const renderGithubInfo = async ({ match }) => {
   const [Page2, data] = await Promise.all([
-    import(/* webpackChunkName: "Page2" */ "./pages/github").then(
-      C => C.default
+    import(/* webpackChunkName: "Page2" */ './pages/github').then(
+      C => C.default,
     ),
     fetch(`https://api.github.com/users/${match.params.username}`).then(res =>
-      res.json()
-    )
+      res.json(),
+    ),
   ]);
   return <Page2 {...data} />;
 };
@@ -27,23 +27,23 @@ const renderSlowPage = () =>
           <div>
             <h2>Page 4</h2>
             <p>That Took awhile</p>
-          </div>
+          </div>,
         ),
-      1000
-    )
+      1000,
+    ),
   );
 
 const FadeInTransition = {
   // appear: true,
   timeout: 500,
-  classNames: "alert",
+  classNames: 'alert',
   // unmountOnExit: true,
-  onEnter: () => console.log("entered4"),
-  onExited: () => console.log("exited2")
+  onEnter: () => console.log('entered4'),
+  onExited: () => console.log('exited2'),
 };
 
 export const routes = (
-  <div style={{ position: "relative" }} className="wrapper">
+  <div style={{ position: 'relative' }} className="wrapper">
     <Route transition={FadeInTransition} exact path="/" component={Home} />
     <Route
       transition={FadeInTransition}
@@ -55,7 +55,7 @@ export const routes = (
       transition={FadeInTransition}
       path="/page1"
       async
-      component={() => import(/* webpackChunkName: "Page1" */ "./pages/page1")}
+      component={() => import(/* webpackChunkName: "Page1" */ './pages/page1')}
     />
     <Route
       transition={FadeInTransition}

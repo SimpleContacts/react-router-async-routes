@@ -1,17 +1,17 @@
-import React, { Component } from "react";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { Route } from "react-router-dom";
-import { findDOMNode } from "react-dom";
+import React, { Component } from 'react';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { Route } from 'react-router-dom';
+import { findDOMNode } from 'react-dom';
 
 // This is used on server and client.
 export const resolveProps = props => {
   return Promise.all([
     props.component && props.component(),
-    props.render && props.render(props)
+    props.render && props.render(props),
   ]).then(([component, render]) => [
     // Manage es6 moduels and commonjs gracefully.
     component && component.default ? component.default : component,
-    render
+    render,
   ]);
 };
 
@@ -43,7 +43,7 @@ export class AsyncHandler extends Component {
           // Lets not fall into es-modules commonjs hell.
           component,
           render: render ? () => render : null,
-          isFinished: true
+          isFinished: true,
         });
       })
       .catch(e => {

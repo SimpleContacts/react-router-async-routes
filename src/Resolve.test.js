@@ -79,7 +79,7 @@ test('ResolveRoutes can resolve the example app', async () => {
     !!renderToString(
       <StaticRouter location={'/'} context={{}}>
         <ExampleApp routes={resolvedRoutes} />
-      </StaticRouter>
+      </StaticRouter>,
     ).match(/Home/),
   ).toBe(true);
 });
