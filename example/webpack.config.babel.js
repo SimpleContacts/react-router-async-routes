@@ -1,86 +1,87 @@
-import webpack from "webpack";
-import path from "path";
-import HtmlWebpackPlugin from "html-webpack-plugin";
+const webpack = require('webpack');
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: {
-    bootstrap: ["babel-polyfill", "./example/bootstrap.js"]
+    bootstrap: ['@babel/polyfill', './example/bootstrap.js'],
   },
-  devtool: "source-map",
+  devtool: 'source-map',
   devServer: {
-    publicPath: "/",
-    contentBase: "./example",
+    publicPath: '/',
+    contentBase: './example',
     proxy: {
-      "**": "http://localhost:8081"
-    }
+      '**': 'http://localhost:8081',
+    },
   },
   output: {
-    publicPath: "/",
-    filename: "[name].js",
-    chunkFilename: "[name].chunk.js",
-    path: __dirname + "/public"
+    publicPath: '/',
+    filename: '[name].js',
+    chunkFilename: '[name].chunk.js',
+    path: __dirname + '/public',
   },
   plugins: [
     new HtmlWebpackPlugin({
       templateContent: `
     <head>
       <style>
-        .fade-enter {
-          opacity: 0.01;
+        .alert-enter {
+          opacity: 0;
+          transform: scale(0.9);
         }
-
-        .fade-enter.fade-enter-active {
+        .alert-enter-active {
           opacity: 1;
-          transition: opacity .5s ease-in;
+          transform: translateX(0);
+          transition: opacity 300ms, transform 300ms;
         }
-
-        .fade-appear {
-          opacity: 0.01;
-        }
-
-        .fade-appear.fade-enter-active {
+        .alert-exit {
           opacity: 1;
-          transition: opacity .5s ease-in;
+        }
+        .alert-exit-active {
+          opacity: 0;
+          transform: scale(0.9);
+          transition: opacity 300ms, transform 300ms;
         }
       </style>
     </head>
     <body>
       <div id="app"></div>
     </body>
-    `
-    })
+    `,
+    }),
   ],
   module: {
     loaders: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: "babel-loader",
+        loader: 'babel-loader',
         options: {
           babelrc: false,
           presets: [
             [
-              "env",
+              '@babel/env',
               {
                 targets: {
-                  browsers: ["last 2 versions", "safari >= 7"]
-                }
-              }
+                  browsers: ['last 2 versions', 'safari >= 7'],
+                },
+              },
             ],
-            "react"
+            'react',
           ],
           plugins: [
-            "babel-plugin-syntax-dynamic-import",
+            '@babel/plugin-transform-runtime',
+            '@babel/plugin-syntax-dynamic-import',
             [
-              "transform-object-rest-spread",
+              '@babel/plugin-proposal-object-rest-spread',
               {
-                useBuiltIns: true
-              }
+                useBuiltIns: true,
+              },
             ],
-            "transform-es2015-modules-umd"
-          ]
-        }
-      }
-    ]
-  }
+            'transform-es2015-modules-umd',
+          ],
+        },
+      },
+    ],
+  },
 };
