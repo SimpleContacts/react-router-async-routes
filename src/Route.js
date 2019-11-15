@@ -74,7 +74,7 @@ export class AsyncHandler extends Component {
 
     // By wrapping in this div, our css transition still works while the content
     // changes.
-    return <div>{content}</div>;
+    return this.props.transition ? <div>{content}</div> : content;
   }
 }
 
